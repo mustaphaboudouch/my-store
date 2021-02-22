@@ -3,6 +3,7 @@ import axios from "axios"
 
 import Header from "./components/Header"
 import ProductList from "./pages/ProductList"
+import ProductDetails from "./pages/ProductDetails"
 import Loading from "./components/Loading"
 import Alert from "./components/Alert"
 
@@ -35,7 +36,7 @@ function App() {
                 : error
                 ? <Alert variant="danger">{ error }</Alert>
                 : <ProductList products={ products } />
-            }            
+            }
         </div>
     );
 }

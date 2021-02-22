@@ -7,22 +7,47 @@ export default function ProductList(props) {
         <div className="product-list container">
             {
                 props.products.map((product) => (
-                    <div className="product-card">
+                    <div key={ product._id } className="product-card">
                         <a href="#" className="image">
-                            <img src={ product.img } />
+                            <img src={ process.env.PUBLIC_URL + product.image } />
                         </a>
                         <div className="info">
-                            <a href="#" className="title">{ product.title }</a>
-                            <h3 className="price">$170,00</h3>
+                            <a href="#" className="title">{ product.name }</a>
+                            <h3 className="price">${ product.price }</h3>
                             <div className="rating">
                                 <div className="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                    <i class="far fa-star"></i>
+                                    <i className={
+                                        product.rating >= 1
+                                            ? 'fa fa-star'
+                                            : product.rating >= 0.5
+                                                ? 'fas fa-star-half-alt'
+                                                : 'far fa-star' }></i>
+                                    <i className={
+                                        product.rating >= 2
+                                            ? 'fa fa-star'
+                                            : product.rating >= 1.5
+                                                ? 'fas fa-star-half-alt'
+                                                : 'far fa-star' }></i>
+                                    <i className={
+                                        product.rating >= 3
+                                            ? 'fa fa-star'
+                                            : product.rating >= 2.5
+                                                ? 'fas fa-star-half-alt'
+                                                : 'far fa-star' }></i>
+                                    <i className={
+                                        product.rating >= 4
+                                            ? 'fa fa-star'
+                                            : product.rating >= 3.5
+                                                ? 'fas fa-star-half-alt'
+                                                : 'far fa-star' }></i>
+                                    <i className={
+                                        product.rating >= 5
+                                            ? 'fa fa-star'
+                                            : product.rating >= 4.5
+                                                ? 'fas fa-star-half-alt'
+                                                : 'far fa-star' }></i>
                                 </div>
-                                <span className="count">4 reviews</span>
+                                <span className="count">{ product.numReviews } reviews</span>
                             </div>
                         </div>
                     </div>
