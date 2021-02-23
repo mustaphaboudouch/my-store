@@ -9,7 +9,7 @@ function App() {
         <BrowserRouter>
             <div>
                 <Header />
-                <Route path="/product/:id" component={ ProductDetails }></Route>
+                <Route path="/product/:id" component={ ProductDetails } exact></Route>
                 <Route path="/" component={ ProductList } exact></Route>
             </div>
         </BrowserRouter>

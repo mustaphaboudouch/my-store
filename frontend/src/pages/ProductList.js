@@ -1,31 +1,21 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useEffect, useState } from 'react'
-import axios from "axios"
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from "react-redux"
 
 import Loading from "../components/Loading"
 import Alert from "../components/Alert"
 import Rating from '../components/Rating'
+import { listProducts } from '../actions/productActions'
 
 export default function ProductList() {
-    const [products, setProducts] = useState([])
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(false)
+    const dispatch = useDispatch()
+    const productList = useSelector(state => state.productList)
+    const { loading, error, products } = productList
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                setLoading(true)
-                const { data } = await axios.get('/api/products')
-                setLoading(false)
-                setProducts(data)
-            } catch (err) {
-                setError(err.message)
-                setLoading(false)
-            }
-        }
-        fetchData()
-    }, [])
+        dispatch(listProducts())
+    }, [dispatch])
 
     return (
         <div>
